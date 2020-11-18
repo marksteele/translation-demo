@@ -34,6 +34,32 @@ mojito repo-create -n translation-demo -d "Translation demo project" -l "(fr-CA)
 
 React components are created, where all strings that need to be translated are wrapped with the `<T>` component or `t() / useTranslation()` function, which implements translation.
 
+Run the NPM scripts.
+
+## Extract translations from source
+
+```
+npm run trans:extract
+```
+
+## Push translation keys to translation server
+
+```
+npm run trans:push
+```
+
+## Pull translations from translation server
+
+```
+npm run trans:pull
+```
+
+## Update JSON translation files from .po files
+
+```
+npm run trans:update
+```
+
 # Similar approaches for React
 
 https://github.com/alexanderwallin/lioness
