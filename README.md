@@ -2,7 +2,12 @@
 
 This is a demo project to showcase an approach for doing front-end translations of React applications.
 
-Moving bits: T component (which uses Jed), gettext-parser & react-gettext-parser, po2json and Mojito as the translation server.
+
+Moving bits: 
+* React T component https://github.com/Mojang/t-component
+* Gettext parser to extract strings from js/jsx: https://github.com/laget-se/react-gettext-parser
+* Transform po files back to Jed compatible json: https://github.com/mikeedwards/po2json
+* Translation server https://www.mojito.global/
 
 It automatically pulls strings to be translated out of the code and can push them to a translation server. It can also pull those translations back into the code and massage them back into a format consumable by React.
 
@@ -10,3 +15,16 @@ It automatically pulls strings to be translated out of the code and can push the
 npm i 
 npm -i react-gettext-parser -g
 ```
+
+# Workflow
+
+React components are created, where all strings that need to be translated are wrapped with the `<T>` component or `t() / useTranslation()` function, which implements translation.
+
+# Other things to look at potentially
+
+https://github.com/alexanderwallin/lioness
+
+For PHP/Java/etc... xgettext can extract from strings from source in multiple languages. 
+
+https://www.codeandweb.com/babeledit/tutorials/translation-with-gettext-and-php
+

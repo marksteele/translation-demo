@@ -20,7 +20,7 @@ const newPo = {
 const compiledEnUs = gettextParser.po.compile(newPo);
 
 fs.writeFile(
-  process.cwd() + "/locale/en_US/en_US.po",
+  process.cwd() + "/locale/en_US/messages.po",
   compiledEnUs,
   options,
   () => {

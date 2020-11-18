@@ -1,22 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import { TranslationProvider } from "@mojang/t-component";
+import * as React from "react";
+import * as ReactDOM from "react-dom";
 
-
-const fetchMessages = async (path: string) => {
-  return (await fetch(path)).json();
-};
-
-fetchMessages("/translations/en_US.json").then(messages => {
+import { App } from "./App";
   ReactDOM.render(
-    <React.StrictMode>
-          <TranslationProvider translation={messages}>
-      <App />
-      </TranslationProvider>,
-
-    </React.StrictMode>,
-    document.getElementById('root')
+      <App />,
+    document.getElementById("root")
   );
-});

@@ -7,5 +7,8 @@ module.exports = {
       comment: 'comment',
     }
   },
+  funcArgumentsMap: {
+    t: ['msgid', 'msgid_plural', 'msgctxt']
+  },
   trim: true,
 }
