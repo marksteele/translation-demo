@@ -19,7 +19,7 @@
     "trans:extract": "react-gettext-parser --config ./react-gettext-parser.config.js --output messages.pot 'src/**/{*.js,*.jsx,*.ts,*.tsx}'; mkdir -p locale/en_US; bin/add-english-translations",
     "trans:push": "export JAVA_HOME=$(/usr/libexec/java_home -v 1.8); mojito push -r translation-demo -sl en-US -ft PO -sr '^messages\\.pot$'",
     "trans:pull": "export JAVA_HOME=$(/usr/libexec/java_home -v 1.8); mojito pull -r translation-demo -sl en-US -ft PO  -sr '^messages\\.pot$' -t locale/",
-    "trans:update": "bin/generate-json --o /public/translations/ --lowercase --escape-percentage"
+    "trans:update": "bin/generate-json --o /public/translations/ --escape-percentage"
   },
   "eslintConfig": {
     "extends": [
@@ -41,7 +41,7 @@
   },
   "devDependencies": {
     "gettext-parser": "^4.0.4",
-    "po2json": "^0.4.5",
+    "po2json": "1.0.0-alpha",
     "react-intl-po": "^2.2.2"
   }
 }
