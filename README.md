@@ -11,18 +11,34 @@ Moving bits:
 
 It automatically pulls strings to be translated out of the code and can push them to a translation server. It can also pull those translations back into the code and massage them back into a format consumable by React.
 
+
+# Install Mojito
+
+```
+brew tap box/mojito
+brew install mojito-cli
+brew install mojito-webapp
+mojito-webapp
+```
+
+
+# Installing test project
+
 ```
 npm i 
 npm -i react-gettext-parser -g
+mojito repo-create -n translation-demo -d "Translation demo project" -l "(fr-CA)->fr-FR" "(en-GB)" "(en-AU)" es-ES fr-FR -it PRINTF_LIKE
 ```
 
 # Workflow
 
 React components are created, where all strings that need to be translated are wrapped with the `<T>` component or `t() / useTranslation()` function, which implements translation.
 
-# Other things to look at potentially
+# Similar approaches for React
 
 https://github.com/alexanderwallin/lioness
+
+# For other languages...
 
 For PHP/Java/etc... xgettext can extract from strings from source in multiple languages. 
 
