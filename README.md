@@ -4,9 +4,9 @@ This is a demo project to showcase an approach for doing front-end translations 
 
 
 Moving bits: 
-* React T component https://github.com/Mojang/t-component
-* Gettext parser to extract strings from js/jsx: https://github.com/laget-se/react-gettext-parser
-* Transform po files back to Jed compatible json: https://github.com/mikeedwards/po2json
+* lioness components and functions for translation (https://github.com/alexanderwallin/lioness)
+* react-gettext-parser to extract strings from js/jsx: https://github.com/laget-se/react-gettext-parser
+* gettext-parser to parse .po files into json https://github.com/smhg/gettext-parser
 * Translation server https://www.mojito.global/
 
 It automatically pulls strings to be translated out of the code and can push them to a translation server. It can also pull those translations back into the code and massage them back into a format consumable by React.
@@ -26,13 +26,32 @@ mojito-webapp
 
 ```
 npm i 
-npm -i react-gettext-parser -g
 mojito repo-create -n translation-demo -d "Translation demo project" -l "(fr-CA)->fr-FR" "(en-GB)" "(en-AU)" es-ES fr-FR -it PRINTF_LIKE
 ```
 
 # Workflow
 
-React components are created, where all strings that need to be translated are wrapped with the `<T>` component or `t() / useTranslation()` function, which implements translation.
+React components are created, where all strings that need to be translated are wrapped with the `<T>` component or translations functions, which implements translation.
+
+Some examples:
+
+```
+{* Simple use case, no plurals *}
+<T>Potato inventory</T>
+
+{* Slightly more complicated... plurals *}
+<T
+  message="Dear {{ name }}, there is one potato left"
+  messagePlural="Dear {{ name }}, there are {{ count }} potatoes left"
+  count={numPotatoes}
+  name={name}
+/>
+
+{* Messages with interpolated translations. the "here" string would be translated in the message strings and interpolated into the link as a child *}
+<T message="Buy more potatoes {{ link:here }}!" link={<a href="http://potatoes.com/buy" />} />
+```
+
+Note: To implement things like gendered language, you would want to be using context (which is supported by lioness/gettext)
 
 Run the NPM scripts.
 
@@ -48,6 +67,8 @@ npm run trans:extract
 npm run trans:push
 ```
 
+Once translations are pushed, go to http://localhost:8080/, login (admin/ChangeMe), select the project and add missing translations.
+
 ## Pull translations from translation server
 
 ```
@@ -60,9 +81,7 @@ npm run trans:pull
 npm run trans:update
 ```
 
-# Similar approaches for React
 
-https://github.com/alexanderwallin/lioness
 
 # For other languages...
 

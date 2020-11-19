@@ -10,7 +10,7 @@
 messages.pot
 # production
 /build
-/public/translations
+/src/translations
 # misc
 .DS_Store
 .env.local

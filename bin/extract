@@ -1,0 +1,31 @@
+#!/usr/bin/env node
+const { extractMessagesFromGlob, toPot } = require('react-gettext-parser');
+const fs = require("fs");
+
+const opts = {
+  trim: true,
+  trimLines: true,
+  trimNewlines: true,
+  disableLineNumbers: false,
+  noWrap: true,
+  funcArgumentsMap: {
+    tc: ["msgid", null],
+    tcn: ["msgid", "msgid_plural", null, null],
+    tcp: ["msgctxt", "msgid", null],
+    tcnp: ["msgctxt", "msgid", "msgid_plural", null, null],
+    t: ["msgid"],
+    tn: ["msgid", "msgid_plural", null],
+    tp: ["msgctxt", "msgid"],
+    tnp: ["msgctxt", "msgid", "msgid_plural", null]
+  },
+  componentPropsMap: {
+    T: {
+      message: "msgid",
+      messagePlural: "msgid_plural",
+      context: "msgctxt",
+      comment: "comment"
+    }
+  }
+}
+// 
+fs.writeFileSync('messages.pot', toPot(extractMessagesFromGlob('src/**/{*.js,*.jsx,*.ts,*.tsx}', opts)));
