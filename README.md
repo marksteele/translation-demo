@@ -49,9 +49,35 @@ Some examples:
 
 {* Messages with interpolated translations. the "here" string would be translated in the message strings and interpolated into the link as a child *}
 <T message="Buy more potatoes {{ link:here }}!" link={<a href="http://potatoes.com/buy" />} />
+
+{* Gendered translations *}
+      { 
+      // Slightly shitty warning: The duplication in here is solely due to the string extraction process. The extractor can't infer all possible contexts.
+      // if manually managing the .pot file we can pass in context as a variable.
+      // https://github.com/laget-se/react-gettext-parser/issues/75
+      }
+      { person.gender === "male" ? (
+            <T
+            message="Dear {{ name }}, there is one potato left"
+            messagePlural="Dear {{ name }}, there are {{ count }} potatoes left"
+            count={numPotatoes}
+            name={person.name}
+            context="male"
+          />  
+          )
+            :
+          (
+            <T
+            message="Dear {{ name }}, there is one potato left"
+            messagePlural="Dear {{ name }}, there are {{ count }} potatoes left"
+            count={numPotatoes}
+            name={person.name}
+            context="female"
+            />  
+          )        
+      }
 ```
 
-Note: To implement things like gendered language, you would want to be using context (which is supported by lioness/gettext)
 
 Run the NPM scripts.
 
