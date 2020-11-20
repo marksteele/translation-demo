@@ -30,33 +30,17 @@ export const App = () => {
     <div>
     <h1><T>Potato inventory</T></h1>
     <p>
-      { 
-      // Slightly shitty warning: The duplication in here is solely due to the string extraction process. The extractor can't infer all possible contexts.
-      }
-      { person.gender === "male" ? (
+      
             <T
             message="Dear {{ name }}, there is one potato left"
             messagePlural="Dear {{ name }}, there are {{ count }} potatoes left"
             count={numPotatoes}
             name={person.name}
-            context="male"
+            context={person.gender}
           />  
-          )
-            :
-          (
-            <T
-            message="Dear {{ name }}, there is one potato left"
-            messagePlural="Dear {{ name }}, there are {{ count }} potatoes left"
-            count={numPotatoes}
-            name={person.name}
-            context="female"
-            />  
-          )        
-      }
-
 </p>
 <p>
-        <T message="Buy more potatoes {{ link:here }}!" link={<a href="http://potatoes.com/buy" />} />
+        <T message="Buy more potatoes {{ link:here }}!" link={<a href="http://potatoes.com/buy" />} context={person.gender} />
         </p>
       <p>
         <button onClick={() => {setPerson(people[Math.floor(Math.random() * people.length)])}}>Change Person</button>

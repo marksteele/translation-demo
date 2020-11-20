@@ -25,7 +25,8 @@ const opts = {
       context: "msgctxt",
       comment: "comment"
     }
-  }
+  },
+  overrideContext: ['male', 'female']
 }
 // 
 fs.writeFileSync('messages.pot', toPot(extractMessagesFromGlob('src/**/{*.js,*.jsx,*.ts,*.tsx}', opts)));
