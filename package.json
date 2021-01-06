@@ -20,7 +20,7 @@
     "trans:clean": "rm -rf locale/* messages.pot src/translations/messages.json",
     "trans:extract": "bin/extract; mkdir -p locale/en_US; bin/add-english-translations",
     "trans:push": "export JAVA_HOME=$(/usr/libexec/java_home -v 1.8); source ~/.mojito/env.sh && mojito push -r translation-demo -sl en-US -ft PO -sr '^messages\\.pot$'",
-    "trans:pull": "export JAVA_HOME=$(/usr/libexec/java_home -v 1.8); source ~/.mojito/env.sh && mojito pull -r translation-demo -sl en-US -t locale/ --fully-translated=true",
+    "trans:pull": "export JAVA_HOME=$(/usr/libexec/java_home -v 1.8); source ~/.mojito/env.sh && mojito pull -r translation-demo -sl en-US -t locale/",
     "trans:update": "bin/generate-json --o /public/translations/ --escape-percentage"
   },
   "eslintConfig": {
