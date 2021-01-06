@@ -42,6 +42,11 @@ export const App = () => {
 <p>
         <T message="Buy more potatoes {{ link:here }}!" link={<a href="http://potatoes.com/buy" />} context={person.gender} />
         </p>
+
+        <p> <T
+            message="Hello worldy world mc world face"
+            context={person.gender}
+          />  </p>
       <p>
         <button onClick={() => {setPerson(people[Math.floor(Math.random() * people.length)])}}>Change Person</button>
         <button onClick={() => {setNumPotatoes(Math.round(Math.random() * 3))}}>change potatoes</button>

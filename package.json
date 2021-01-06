@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
+    "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.1.10",
     "lioness": "^0.2.18",
     "react": "^17.0.1",
@@ -17,9 +17,10 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "trans:clean": "rm -rf locale/* messages.pot src/translations/messages.json",
     "trans:extract": "bin/extract; mkdir -p locale/en_US; bin/add-english-translations",
-    "trans:push": "export JAVA_HOME=$(/usr/libexec/java_home -v 1.8); mojito push -r translation-demo -sl en-US -ft PO -sr '^messages\\.pot$'",
-    "trans:pull": "export JAVA_HOME=$(/usr/libexec/java_home -v 1.8); mojito pull -r translation-demo -sl en-US -ft PO  -sr '^messages\\.pot$' -t locale/",
+    "trans:push": "export JAVA_HOME=$(/usr/libexec/java_home -v 1.8); source ~/.mojito/env.sh && mojito push -r translation-demo -sl en-US -ft PO -sr '^messages\\.pot$'",
+    "trans:pull": "export JAVA_HOME=$(/usr/libexec/java_home -v 1.8); source ~/.mojito/env.sh && mojito pull -r translation-demo -sl en-US -t locale/ --fully-translated=true",
     "trans:update": "bin/generate-json --o /public/translations/ --escape-percentage"
   },
   "eslintConfig": {

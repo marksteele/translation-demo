@@ -2,10 +2,12 @@
 
 This is a demo project to showcase an approach for doing front-end translations of React applications.
 
+The goal is to support pluralization as well as gendered translations (which are common to latin based languages like spanish, french, italian) in a way that most closely resembles a typical gettext based workflow.
+
 
 Moving bits: 
-* lioness components and functions for translation (https://github.com/alexanderwallin/lioness)
-* react-gettext-parser to extract strings from js/jsx: https://github.com/laget-se/react-gettext-parser
+* lioness components and functions for translation https://github.com/alexanderwallin/lioness
+* react-gettext-parser to extract strings from js/jsx: https://github.com/marksteele/react-gettext-parser (forked from https://github.com/laget-se/react-gettext-parser to allow overriding contexts)
 * gettext-parser to parse .po files into json https://github.com/smhg/gettext-parser
 * Translation server https://www.mojito.global/
 
@@ -36,28 +38,38 @@ React components are created, where all strings that need to be translated are w
 Some examples:
 
 ```
-{* Simple use case, no plurals *}
-<T>Potato inventory</T>
+<LionessProvider messages={messages} locale={locale}>
+    <div>
+    <h1><T>Potato inventory</T></h1>
+    <p>
+      
+            <T
+            message="Dear {{ name }}, there is one potato left"
+            messagePlural="Dear {{ name }}, there are {{ count }} potatoes left"
+            count={numPotatoes}
+            name={person.name}
+            context={person.gender}
+          />  
+</p>
+<p>
+        <T message="Buy more potatoes {{ link:here }}!" link={<a href="http://potatoes.com/buy" />} context={person.gender} />
+        </p>
 
-{* Slightly more complicated... plurals *}
-<T
-  message="Dear {{ name }}, there is one potato left"
-  messagePlural="Dear {{ name }}, there are {{ count }} potatoes left"
-  count={numPotatoes}
-  name={name}
-/>
-
-{* Messages with interpolated translations. the "here" string would be translated in the message strings and interpolated into the link as a child *}
-<T message="Buy more potatoes {{ link:here }}!" link={<a href="http://potatoes.com/buy" />} />
-
-{* Gendered translations via dynamic context (needs changes in parser config see bin/extract for demo) *}
-  <T
-    message="Dear {{ name }}, there is one potato left"
-    messagePlural="Dear {{ name }}, there are {{ count }} potatoes left"
-    count={numPotatoes}
-    name={person.name}
-    context={person.gender}
-  />  
+        <p> <T
+            message="Hello worldy world mc world face"
+            context={person.gender}
+          />  </p>
+      <p>
+        <button onClick={() => {setPerson(people[Math.floor(Math.random() * people.length)])}}>Change Person</button>
+        <button onClick={() => {setNumPotatoes(Math.round(Math.random() * 3))}}>change potatoes</button>
+      </p>
+      <p>
+        <button onClick={() => {setLocale('en_US')}}>English</button>
+        <button onClick={() => {setLocale('fr_FR')}}>French</button>
+        <button onClick={() => {setLocale('es_ES')}}>Spanish</button>
+      </p>
+    </div>
+    </LionessProvider>
 ```
 
 

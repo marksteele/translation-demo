@@ -11,10 +11,13 @@ const input = fs.readFileSync(
   options
 );
 const po = gettextParser.po.parse(input);
-
 const newPo = {
   ...po,
-  translations: { "": populateEmptyValues(po.translations[""]) },
+  translations: { 
+    "": populateEmptyValues(po.translations[""]),
+    "male": populateEmptyValues(po.translations["male"]),
+    "female": populateEmptyValues(po.translations["female"]),
+ },
 };
 
 const compiledEnUs = gettextParser.po.compile(newPo);
